@@ -2,3 +2,13 @@ import camion.*
 import cosas.*
 
 
+describe "ejemplo 1" {
+
+  test "camion solo tiene a bumblebee" {
+    camion.cargar(bumblebee)
+    camion.descargar(bumblebee)
+    assert.that(camion.cosas().isEmpty())
+    
+
+  }
+}
