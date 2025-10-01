@@ -2,13 +2,40 @@ import camion.*
 import cosas.*
 
 
-describe "ejemplo 1" {
+describe "camion y cargas" {
 
-  test "camion solo tiene a bumblebee" {
+  test "camion descargado se le carga a bumblebee y solo tiene a bumblebee" {
     camion.cargar(bumblebee)
-    camion.descargar(bumblebee)
-    assert.that(camion.cosas().isEmpty())
+    assert.equals(1, camion.cosas().size())
     
 
+  }
+
+  test "camion solo tiene a bumblebee y  Knight Rider" {
+    camion.cargar(bumblebee)
+    camion.cargar(knightRider)
+    assert.equals(2, camion.cosas().size())
+
+    
+  }
+
+  test "camnion con bumblebee y knightRider, tras descargar a bumblebee solo queda knightRider" {
+    camion.cargar(bumblebee)
+    camion.cargar(knightRider)
+    camion.descargar(bumblebee)
+    assert.equals(1, camion.cosas().size())
+    
+  }
+
+  test "no puedo cargar a knightRider, porque ya esta cargado" {//camion.cosas() es una set, asique no se agrega
+    camion.cargar(knightRider)
+    camion.cargar(knightRider)
+    assert.equals(1, camion.cosas().size())
+
+  }
+
+  test "no puedo descargar a bumblebee, porque no esta cargado" {
+    assert.throwsException({ camion.descargar(bumblebee) })
+    
   }
 }
