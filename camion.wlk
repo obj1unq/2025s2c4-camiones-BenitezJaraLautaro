@@ -1,6 +1,7 @@
 import cosas.*
 
 object camion {
+	const tara = 1000
 	const property cosas = #{}
 		
 	method cargar(unaCosa) {

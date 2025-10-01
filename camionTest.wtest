@@ -1,41 +1,75 @@
 import camion.*
 import cosas.*
 
-
 describe "camion y cargas" {
-
   test "camion descargado se le carga a bumblebee y solo tiene a bumblebee" {
     camion.cargar(bumblebee)
     assert.equals(1, camion.cosas().size())
-    
-
   }
-
+  
   test "camion solo tiene a bumblebee y  Knight Rider" {
     camion.cargar(bumblebee)
     camion.cargar(knightRider)
     assert.equals(2, camion.cosas().size())
-
-    
   }
-
+  
   test "camnion con bumblebee y knightRider, tras descargar a bumblebee solo queda knightRider" {
     camion.cargar(bumblebee)
     camion.cargar(knightRider)
     camion.descargar(bumblebee)
     assert.equals(1, camion.cosas().size())
-    
   }
-
-  test "no puedo cargar a knightRider, porque ya esta cargado" {//camion.cosas() es una set, asique no se agrega
+  
+  test "no puedo cargar a knightRider, porque ya esta cargado" {
+    //camion.cosas() es una set, asique no se agrega
     camion.cargar(knightRider)
     camion.cargar(knightRider)
     assert.equals(1, camion.cosas().size())
-
   }
-
+  
   test "no puedo descargar a bumblebee, porque no esta cargado" {
     assert.throwsException({ camion.descargar(bumblebee) })
+  }
+}
+
+describe "pesos par" {
+  test "el peso de bumblebee y 50 kg de arena a granal, ambos son par" {
+    camion.cargar(bumblebee)
+    camion.cargar(arenaAGranal)
+    arenaAGranal.peso(50)
+    assert.equals(0, bumblebee.peso() % 2)
+    assert.equals(0, arenaAGranal.peso() % 2)
+  }
+  
+  test "el peso de bumblebee y 51 kg de arena a granal, ambos no son par" {
+    camion.cargar(bumblebee)
+    camion.cargar(arenaAGranal)
+    arenaAGranal.peso(51)
+    assert.equals(0, bumblebee.peso() % 2)
+    assert.notEquals(0, arenaAGranal.peso() % 2)
+  }
+}
+
+describe "alguno que pesa cierta cantidad" {
+  method initialize() {
+    camion.cargar(bumblebee)
+    camion.cargar(arenaAGranal)
+    arenaAGranal.peso(50)
+  }
+
+  test "algo que pesa 50 debe contestar que sí" {
+    assert.that(camion.cosas().any {n => n.peso() == 50})
+    
+  }
+
+  test "algo que pesa 800 debe contestar que sí" {
+    assert.that(camion.cosas().any {n => n.peso() == 800})
+    
+  }
+
+  test "algo que pesa 500 debe contestar que sí" {
+    assert.notThat(camion.cosas().any {n => n.peso() == 500})
     
   }
 }
+
