@@ -144,4 +144,12 @@ describe "superar nivel de peligrosidad" {
     assert.equals(1, camion.cargasQueSuperenNivel_Peligro(15).size())
     
   }
+
+  test "En las cosas más peligrosas que Bumblebee sólo está la batería antiaérea." {
+    assert.that(camion.cargasQueSuperanNivelPeligroDe(bumblebee).contains(bateriaAntiaerea))
+    assert.equals(1, camion.cargasQueSuperenNivel_Peligro(15).size())
+    
+  }
+
+  
 }

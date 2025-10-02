@@ -6,7 +6,7 @@ object knightRider {
 object arenaAGranal {
 	var property peso = 0
 
-	method peligrosidad() {
+	method nivelPeligrosidad() {
 		return 1
 	  
 	}
@@ -25,7 +25,7 @@ object bumblebee {
 	  
 	}
 
-	method peligrosidad() {
+	method nivelPeligrosidad() {
 		if (estaTransformadoEnAuto) {
 			return 15
 		} else {
@@ -60,7 +60,7 @@ object paqueteDeLadrillos {
 	  
 	} 
 
-	method peligrosidad() {
+	method nivelPeligrosidad() {
 		return 2
 	  
 	}
@@ -83,7 +83,7 @@ object bateriaAntiaerea {
 		}
 	}
 
-	method peligrosidad() {
+	method nivelPeligrosidad() {
 		if (estaConMisiles) {
 			return 100
 		} else {
@@ -124,7 +124,7 @@ object bateriaAntiaerea {
 object residuosRadiactivos {
 	var property peso = 0
 
-	method peligrosidad() {
+	method nivelPeligrosidad() {
 		return 200
 	  
 	} 
