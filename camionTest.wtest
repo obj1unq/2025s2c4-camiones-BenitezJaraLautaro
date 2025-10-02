@@ -73,3 +73,23 @@ describe "alguno que pesa cierta cantidad" {
   }
 }
 
+describe "peso total y peso maximo" {
+  method initialize() {
+    camion.cargar(bumblebee)
+    paqueteDeLadrillos.cantLadrillos(300)
+    camion.cargar(paqueteDeLadrillos)
+
+  }
+  test "camion cargado con bumblebee y paquete de 300 ladrillos, entonces el peso total es 2400 y no está excedido de peso." {
+    assert.equals(2400, camion.pesoTotal())
+    assert.notThat(camion.excedidoDePeso())
+  }
+
+  test "camion cargado con bumblebee y paquete de 400 ladrillos, entonces el peso total es 2600 y sí está excedido." {
+    paqueteDeLadrillos.cantLadrillos(400)
+    assert.equals(2600, camion.pesoTotal())
+    assert.that(camion.excedidoDePeso())
+    
+  }
+}
+

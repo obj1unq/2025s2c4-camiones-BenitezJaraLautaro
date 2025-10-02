@@ -3,6 +3,7 @@ import cosas.*
 object camion {
 	const tara = 1000
 	const property cosas = #{}
+	const pesoMaximoAceptable = 2500
 		
 	method cargar(unaCosa) {
 		cosas.add(unaCosa)
@@ -18,4 +19,32 @@ object camion {
 			self.error("el camion no contiene lo que se quiere descargar")
 		}
 	}
+	method pesoTotal() {
+		return tara + self.pesoCargado()
+	  
+	}
+
+	method pesoCargado() {
+		return cosas.sum( { n => n.peso() } )
+	  
+	}
+
+	method excedidoDePeso() {
+		return self.pesoTotal() >  pesoMaximoAceptable
+	  
+	}
+
+	method objetoConNivelDePeligrosidad(nivelPeligro) {
+		self.validarCargaConPeligrosidad(nivelPeligro)
+		return cosas.find({ carga => carga.peligrosidad() == nivelPeligro })
+	  
+	}
+	method validarCargaConPeligrosidad(peligro) {
+		if(not (cosas.any({ carga => carga.peligrosidad() == peligro }))) {
+			self.error("no hay carga con este nivel de peligro")
+		}
+	  
+	}
+
+
 }
