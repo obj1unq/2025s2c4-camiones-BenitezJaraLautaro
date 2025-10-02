@@ -36,16 +36,10 @@ object camion {
 
 
 	method objetoConNivelDePeligrosidad(nivelPeligro) {
-		self.validarCargaConPeligrosidad(nivelPeligro)
 		return cosas.find({ carga => carga.nivelPeligrosidad() == nivelPeligro })
 	  
 	}
-	method validarCargaConPeligrosidad(peligro) {
-		if(not (cosas.any({ carga => carga.nivelPeligrosidad() == peligro }))) {
-			self.error("no hay carga con este nivel de peligro")
-		}
-	  
-	}
+
 
 
 	method cargasQueSuperenNivel_Peligro(nivelPeligro) {

@@ -93,26 +93,14 @@ object bateriaAntiaerea {
 	}
 
 	method desgargarMisiles() {
-		self.validarMisilesCargados()
 		estaConMisiles = false
 	}
-	method validarMisilesCargados() {
-		if(not estaConMisiles) {
-			self.error("los misiles ya estan descargados")
-		}
-	  
-	}
+
 
 	method cargarMisiles() {
-		self.validarMisilesDescargados()
 		estaConMisiles = true
 	} 
-	method validarMisilesDescargados() {
-		if(estaConMisiles) {
-			self.error("los misiles ya estan cargados")
-		}
-	  
-	}
+
 
 	method nombre() {
 		return "Batería antiaérea"
@@ -132,6 +120,35 @@ object residuosRadiactivos {
 	method nombre() {
 		return "Residuos radiactivos"
 	  
+	}
+  
+}
+
+object contenedorPortuario {
+	const pesoVacio = 100
+	const property cosasDentro = #{}
+
+	method peso() {
+		return pesoVacio + cosasDentro.sum({ cosa => cosa.peso() })
+	}  
+
+	method nivelPeligrosidad() {
+		if(cosasDentro.isEmpty()) {
+			return 0
+		}else{
+			return self.laCargaMasPeligrosa(cosasDentro)//Si se activa el else ya tengo asegurado que no es vacio
+		}	
+	}
+
+	method laCargaMasPeligrosa(cargas) {
+		var masPeligroso = cargas.get(0)
+		cargas.forEach({ cosa => masPeligroso = masPeligroso.nivelPeligrosidad().max(cosa.nivelPeligrosidad()) })
+		return masPeligroso
+	  
+	}
+
+	method cargarObjetos(objeto) {
+		cosasDentro.add(objeto)
 	}
   
 }
