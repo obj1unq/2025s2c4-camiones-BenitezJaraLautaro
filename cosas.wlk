@@ -10,8 +10,12 @@ object arenaAGranal {
 		return 1
 	  
 	}
+
+	method nombre() {
+		return "Arena a granel"
+	  
+	}
 	
-  
 }
 
 object bumblebee {
@@ -39,6 +43,11 @@ object bumblebee {
 		estaTransformadoEnAuto = true 
 	  
 	}
+
+	method nombre() {
+		return "Bumblebee"
+	  
+	}
   
 }
 
@@ -56,12 +65,15 @@ object paqueteDeLadrillos {
 	  
 	}
 
-
+	method nombre() {
+		return "Paquete de ladrillos"
+	  
+	}
   
 }
 
 object bateriaAntiaerea {
-	var property estaConMisiles = true
+	var property estaConMisiles = false
 
 	method peso() {
 		if(estaConMisiles) {
@@ -78,7 +90,34 @@ object bateriaAntiaerea {
 			return 0
 		}
 	  
+	}
+
+	method desgargarMisiles() {
+		self.validarMisilesCargados()
+		estaConMisiles = false
+	}
+	method validarMisilesCargados() {
+		if(not estaConMisiles) {
+			self.error("los misiles ya estan descargados")
+		}
+	  
+	}
+
+	method cargarMisiles() {
+		self.validarMisilesDescargados()
+		estaConMisiles = true
 	} 
+	method validarMisilesDescargados() {
+		if(estaConMisiles) {
+			self.error("los misiles ya estan cargados")
+		}
+	  
+	}
+
+	method nombre() {
+		return "Batería antiaérea"
+	  
+	}
   
 }
 
@@ -89,6 +128,11 @@ object residuosRadiactivos {
 		return 200
 	  
 	} 
+
+	method nombre() {
+		return "Residuos radiactivos"
+	  
+	}
   
 }
 

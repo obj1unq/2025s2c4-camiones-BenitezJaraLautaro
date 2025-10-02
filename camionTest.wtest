@@ -93,3 +93,42 @@ describe "peso total y peso maximo" {
   }
 }
 
+describe "cargas con nivel de peligro n" {
+  method initialize() {
+    camion.cargar(bumblebee)
+    camion.cargar(bateriaAntiaerea)
+    camion.cargar(residuosRadiactivos)
+
+  }
+  test "Si se pide algo de nivel 0 debe encontrar a la batería antiaérea" {
+    assert.that(bateriaAntiaerea.nombre() == camion.objetoConNivelDePeligrosidad(0).nombre())
+
+  }
+
+  test "Si se pide algo de nivel 15 debe encontrar a Bumblebee.ion" {
+    assert.that(bumblebee.nombre() == camion.objetoConNivelDePeligrosidad(15).nombre())
+    
+  }
+
+  test "Si se pide algo de nivel 200 debe encontrar a los residuos." {
+    assert.that(residuosRadiactivos.nombre() == camion.objetoConNivelDePeligrosidad(200).nombre())
+    
+  }
+
+  test "Si se pide algo de nivel 30 debe romper, porque no se encuentra nada." {
+    assert.throwsException({ camion.objetoConNivelDePeligrosidad(30).nombre() })
+    
+  }
+
+  test "Si se cambia a Bumblebee a modo robot y se vuelve a pedir algo de 30, entonces encuentra a Bumblebee." {
+    bumblebee.transformarEnRobot()
+    assert.that(bumblebee.nombre() == camion.objetoConNivelDePeligrosidad(30).nombre())
+    
+  }
+
+  test "Si se carga la batería con misiles y se pide algo de peligrosidad 100 entonces encuentra a la batería." {
+    bateriaAntiaerea.cargarMisiles()
+    assert.that(bateriaAntiaerea.nombre() == camion.objetoConNivelDePeligrosidad(100).nombre())
+    
+  }
+}
