@@ -1,7 +1,7 @@
 import camion.*
 import cosas.*
 
-describe "camion y cargas" {
+describe "Carga y descarga" {
   test "camion descargado se le carga a bumblebee y solo tiene a bumblebee" {
     camion.cargar(bumblebee)
     assert.equals(1, camion.cosas().size())
@@ -32,7 +32,7 @@ describe "camion y cargas" {
   }
 }
 
-describe "pesos par" {
+describe "Todo peso par" {
   test "el peso de bumblebee y 50 kg de arena a granal, ambos son par" {
     camion.cargar(bumblebee)
     camion.cargar(arenaAGranal)
@@ -50,7 +50,7 @@ describe "pesos par" {
   }
 }
 
-describe "alguno que pesa cierta cantidad" {
+describe "Hay alguno que pesa" {
   method initialize() {
     camion.cargar(bumblebee)
     camion.cargar(arenaAGranal)
@@ -73,7 +73,7 @@ describe "alguno que pesa cierta cantidad" {
   }
 }
 
-describe "peso total y peso maximo" {
+describe "Peso y exceso de peso" {
   method initialize() {
     camion.cargar(bumblebee)
     paqueteDeLadrillos.cantLadrillos(300)
@@ -105,7 +105,7 @@ describe "cargas con nivel de peligro n" {
 
   }
 
-  test "Si se pide algo de nivel 15 debe encontrar a Bumblebee.ion" {
+  test "Si se pide algo de nivel 15 debe encontrar a Bumblebee." {
     assert.that(bumblebee.nombre() == camion.objetoConNivelDePeligrosidad(15).nombre())
     
   }
@@ -133,7 +133,7 @@ describe "cargas con nivel de peligro n" {
   }
 }
 
-describe "superar nivel de peligrosidad" {
+describe "Cosas peligrosas" {
   method initialize() {
     camion.cargar(knightRider)
     camion.cargar(bateriaAntiaerea)
@@ -147,9 +147,34 @@ describe "superar nivel de peligrosidad" {
 
   test "En las cosas más peligrosas que Bumblebee sólo está la batería antiaérea." {
     assert.that(camion.cargasQueSuperanNivelPeligroDe(bumblebee).contains(bateriaAntiaerea))
-    assert.equals(1, camion.cargasQueSuperenNivel_Peligro(15).size())
+    assert.equals(1, camion.cargasQueSuperanNivelPeligroDe(bumblebee).size())
     
   }
 
-  
+  test "Las cosas que superan 2 de peligrosidad son Knight Rider y la batería antiaérea." {
+    assert.that(camion.cargasQueSuperenNivel_Peligro(2).contains(bateriaAntiaerea))
+    assert.that(camion.cargasQueSuperenNivel_Peligro(2).contains(knightRider))
+    assert.equals(2, camion.cargasQueSuperenNivel_Peligro(2).size())
+    
+  }
+
+  test "Las cosas más peligrosas que el paquete de ladrillos son Knight Rider y la batería antiaérea." {
+    assert.that(camion.cargasQueSuperanNivelPeligroDe(paqueteDeLadrillos).contains(knightRider))
+    assert.that(camion.cargasQueSuperanNivelPeligroDe(paqueteDeLadrillos).contains(bateriaAntiaerea))
+    assert.equals(2, camion.cargasQueSuperenNivel_Peligro(2).size())
+    
+  }
+
+  test "No hay cosas más peligrosas que 200." {
+    assert.that(camion.cargasQueSuperenNivel_Peligro(200).isEmpty())
+    
+  }
+
+  test "No hay nada más peligroso que los residuos radiactivos." {
+    assert.that(camion.cargasQueSuperanNivelPeligroDe(residuosRadiactivos).isEmpty())
+    
+  }
+
+
 }
+
