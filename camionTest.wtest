@@ -132,3 +132,16 @@ describe "cargas con nivel de peligro n" {
     
   }
 }
+
+describe "superar nivel de peligrosidad" {
+  method initialize() {
+    camion.cargar(knightRider)
+    camion.cargar(bateriaAntiaerea)
+    bateriaAntiaerea.cargarMisiles()
+  }
+  test "En las cosas más peligrosas de 15 sólo está la batería antiaérea" {
+    assert.that(camion.cargasQueSuperenNivel_Peligro(15).contains(bateriaAntiaerea))
+    assert.equals(1, camion.cargasQueSuperenNivel_Peligro(15).size())
+    
+  }
+}

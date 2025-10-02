@@ -46,5 +46,14 @@ object camion {
 	  
 	}
 
+	method cargasQueSuperenNivel_Peligro(nivelPeligro) {
+		return cosas.find( { carga => carga.peligrosidad() > nivelPeligro } )
+	}
+
+	method cargasQueSuperanNivelPeligroDe(carga) {
+		return cosas.find ( { cosa => cosa.peligrosidad() > carga.peligrosidad() } )
+	  
+	}
+
 
 }
