@@ -108,4 +108,23 @@ object contenedorPortuario {
 		return cosasDentro.max({ cosas => cosas.nivelPeligrosidad() })
 	  
 	}
+	
+}
+
+object embalajeDeSeguridad {
+	var property objetoEnvuelto = null
+	method envolverObjeto(objeto) {
+		objetoEnvuelto = objeto
+	  
+	}
+
+	method peso() {
+		return objetoEnvuelto.peso()
+	  
+	}
+
+	method nivelPeligrosidad() {
+		return objetoEnvuelto.nivelPeligrosidad()
+	  
+	}
 }
