@@ -210,15 +210,20 @@ describe "Contenedor portuario y embalaje de seguridad" {
   }
 
   test "El contenedor portuario que tiene a Knight Rider y 50 kg de arena a granel pesa 650 y su peligrosidad es 10." {
-    
+    contenedorPortuario.cargarObjeto(knightRider)
+    contenedorPortuario.cargarObjeto(arenaAGranal)
+    arenaAGranal.peso(50)
+    assert.that(contenedorPortuario.nivelPeligrosidad() == 10 and contenedorPortuario.peso() == 650)
   }
 
   test "Si el embalaje de seguridad envuelve a Knight Rider, su peso es 500 y su peligrosidad es 5." {
-    
+    embalajeDeSeguridad.envolverObjeto(knightRider)
+    assert.that(embalajeDeSeguridad.nivelPeligrosidad() == 5 and embalajeDeSeguridad.peso() == 500)
   }
 
   test "Si el embalaje de seguridad envuelve a Bumblebee en modo auto, su peso es 800 y su peligrosidad 7,5." {
-    
+    embalajeDeSeguridad.envolverObjeto(bumblebee)
+    assert.that(embalajeDeSeguridad.nivelPeligrosidad() == 7.5 and embalajeDeSeguridad.peso() == 800)
   }
 
 

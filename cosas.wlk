@@ -113,6 +113,7 @@ object contenedorPortuario {
 
 object embalajeDeSeguridad {
 	var property objetoEnvuelto = null
+
 	method envolverObjeto(objeto) {
 		objetoEnvuelto = objeto
 	  
@@ -124,7 +125,7 @@ object embalajeDeSeguridad {
 	}
 
 	method nivelPeligrosidad() {
-		return objetoEnvuelto.nivelPeligrosidad()
+		return objetoEnvuelto.nivelPeligrosidad()/2
 	  
 	}
 }

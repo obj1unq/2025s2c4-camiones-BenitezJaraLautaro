@@ -46,11 +46,15 @@ object camion {
 		const superanNivel = cosas.filter( { carga => carga.nivelPeligrosidad() > nivelPeligro } )
 		return superanNivel
 	}
-
 	method cargasQueSuperanNivelPeligroDe(carga) {
 		return self.cargasQueSuperenNivel_Peligro(carga.nivelPeligrosidad())
 	  
 	}
+	method cargasSuperanNivelPeligro_SoloContieneA_(nivelP, carga) {
+		return self.cargasQueSuperenNivel_Peligro(nivelP).contains(carga) and self.cargasQueSuperenNivel_Peligro(nivelP).size() == 1 
+	  
+	}
+
 
 
 	method puedeCircularRuta(nivelPeligroMaximo) {
