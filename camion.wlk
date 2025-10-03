@@ -19,6 +19,17 @@ object camion {
 			self.error("el camion no contiene lo que se quiere descargar")
 		}
 	}
+
+	method esTodoElPesoPar() {
+		return cosas.all({ carga => carga.peso().even() })
+	  
+	}
+
+	method hayAlgoConPeso(pesoKG) {
+		return cosas.any({ carga => carga.peso() == pesoKG })
+	  
+	}
+
 	method pesoTotal() {
 		return tara + self.pesoCargado()
 	  
@@ -64,6 +75,11 @@ object camion {
 	method algunaCargaSuperaPeligro(nivelPeligro) {
 		return cosas.any({ carga => carga.nivelPeligrosidad() > nivelPeligro })
 	  
+	}
+
+	
+	method llevaAlgoQuePesaEntre(min, max) {
+		return cosas.any({carga => carga.peso() >= min and carga.peso() <= max})
 	}
 
 

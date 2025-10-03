@@ -37,16 +37,14 @@ describe "Todo peso par" {
     camion.cargar(bumblebee)
     camion.cargar(arenaAGranal)
     arenaAGranal.peso(50)
-    assert.equals(0, bumblebee.peso() % 2)
-    assert.equals(0, arenaAGranal.peso() % 2)
+    assert.that(camion.esTodoElPesoPar())
   }
   
   test "el peso de bumblebee y 51 kg de arena a granal, ambos no son par" {
     camion.cargar(bumblebee)
     camion.cargar(arenaAGranal)
     arenaAGranal.peso(51)
-    assert.equals(0, bumblebee.peso() % 2)
-    assert.notEquals(0, arenaAGranal.peso() % 2)
+    assert.notThat(camion.esTodoElPesoPar())
   }
 }
 
@@ -57,18 +55,18 @@ describe "Hay alguno que pesa" {
     arenaAGranal.peso(50)
   }
 
-  test "algo que pesa 50 debe contestar que sí" {
-    assert.that(camion.cosas().any {n => n.peso() == 50})
+  test "Camion con Bumblebee y 50 kg de arena a granel, tiene algo que pesa 50" {
+    assert.that(camion.hayAlgoConPeso(50))
     
   }
 
-  test "algo que pesa 800 debe contestar que sí" {
-    assert.that(camion.cosas().any {n => n.peso() == 800})
+  test "Camion con Bumblebee y 50 kg de arena a granel, tiene algo que pesa 800" {
+    assert.that(camion.hayAlgoConPeso(800))
     
   }
 
-  test "algo que pesa 500 debe contestar que sí" {
-    assert.notThat(camion.cosas().any {n => n.peso() == 500})
+  test "Camion con Bumblebee y 50 kg de arena a granel, no tiene nada que pese 500" {
+    assert.notThat(camion.hayAlgoConPeso(500))
     
   }
 }
@@ -100,33 +98,33 @@ describe "cargas con nivel de peligro n" {
     camion.cargar(residuosRadiactivos)
 
   }
-  test "Si se pide algo de nivel 0 debe encontrar a la batería antiaérea" {
+  test "Camion cargado con Bumblebee, batería antiaérea y residuos radiactivos, si se pide algo de nivel 0 debe encontrar a la batería antiaérea" {
     assert.that(bateriaAntiaerea.nombre() == camion.objetoConNivelDePeligrosidad(0).nombre())
 
   }
 
-  test "Si se pide algo de nivel 15 debe encontrar a Bumblebee." {
+  test "Camion cargado con Bumblebee, batería antiaérea y residuos radiactivos, si se pide algo de nivel 15 debe encontrar a Bumblebee." {
     assert.that(bumblebee.nombre() == camion.objetoConNivelDePeligrosidad(15).nombre())
     
   }
 
-  test "Si se pide algo de nivel 200 debe encontrar a los residuos." {
+  test "Camion cargado con Bumblebee, batería antiaérea y residuos radiactivos, si se pide algo de nivel 200 debe encontrar a los residuos." {
     assert.that(residuosRadiactivos.nombre() == camion.objetoConNivelDePeligrosidad(200).nombre())
     
   }
 
-  test "Si se pide algo de nivel 30 debe romper, porque no se encuentra nada." {
+  test "Camion cargado con Bumblebee, batería antiaérea y residuos radiactivos, si se pide algo de nivel 30 debe romper, porque no se encuentra nada." {
     assert.throwsException({ camion.objetoConNivelDePeligrosidad(30).nombre() })
     
   }
 
-  test "Si se cambia a Bumblebee a modo robot y se vuelve a pedir algo de 30, entonces encuentra a Bumblebee." {
+  test "Camion cargado con Bumblebee modo robot, batería antiaérea y residuos radiactivos, si se pide algo de nivel 30, entonces encuentra a Bumblebee." {
     bumblebee.transformarEnRobot()
     assert.that(bumblebee.nombre() == camion.objetoConNivelDePeligrosidad(30).nombre())
     
   }
 
-  test "Si se carga la batería con misiles y se pide algo de peligrosidad 100 entonces encuentra a la batería." {
+  test "Camion cargado con Bumblebee modo robot, batería antiaérea con misiles cargados y residuos radiactivos, si se pide algo de peligrosidad 100 entonces encuentra a la batería." {
     bateriaAntiaerea.cargarMisiles()
     assert.that(bateriaAntiaerea.nombre() == camion.objetoConNivelDePeligrosidad(100).nombre())
     
@@ -229,3 +227,15 @@ describe "Contenedor portuario y embalaje de seguridad" {
 
 }
 
+describe "Tiene algo que pesa entre dos valores" {
+  method initialize() {
+    camion.cargar(bumblebee)
+    paqueteDeLadrillos.cantLadrillos(300)
+    camion.cargar(paqueteDeLadrillos)
+
+  }
+
+  test "Camnion con Bumblebee y un paquete de 300 ladrillo, tiene algo que pesa entre 5 y 700." {
+    
+  }
+}
