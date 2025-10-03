@@ -137,33 +137,29 @@ describe "Cosas peligrosas" {
     camion.cargar(bateriaAntiaerea)
     bateriaAntiaerea.cargarMisiles()
   }
-  test "En las cosas más peligrosas de 15 sólo está la batería antiaérea" {
-    assert.that(camion.cargasQueSuperenNivel_Peligro(15).contains(bateriaAntiaerea))
-    assert.equals(1, camion.cargasQueSuperenNivel_Peligro(15).size())
+  test "Camion cargado con Knight Rider, Batería antiaérea con misiles, En las cosas más peligrosas de 15 sólo está la batería antiaérea" {
+    assert.equals(#{bateriaAntiaerea}, camion.cargasQueSuperenNivel_Peligro(15))
+
     
   }
 
-  test "En las cosas más peligrosas que Bumblebee sólo está la batería antiaérea." {
-    assert.that(camion.cargasQueSuperanNivelPeligroDe(bumblebee).contains(bateriaAntiaerea))
-    assert.equals(1, camion.cargasQueSuperanNivelPeligroDe(bumblebee).size())
+  test "Camion cargado con Knight Rider, Batería antiaérea con misiles, En las cosas más peligrosas que Bumblebee sólo está la batería antiaérea." {
+    assert.equals(#{bateriaAntiaerea}, camion.cargasQueSuperanNivelPeligroDe(bumblebee))
+
     
   }
 
-  test "Las cosas que superan 2 de peligrosidad son Knight Rider y la batería antiaérea." {
-    assert.that(camion.cargasQueSuperenNivel_Peligro(2).contains(bateriaAntiaerea))
-    assert.that(camion.cargasQueSuperenNivel_Peligro(2).contains(knightRider))
-    assert.equals(2, camion.cargasQueSuperenNivel_Peligro(2).size())
+  test "Camion cargado con Knight Rider, Batería antiaérea con misiles, Las cosas que superan 2 de peligrosidad son Knight Rider y la batería antiaérea." {
+    assert.equals(#{knightRider, bateriaAntiaerea}, camion.cargasQueSuperenNivel_Peligro(2))
+
+  }
+
+  test "Camion cargado con Knight Rider, Batería antiaérea con misiles, Las cosas más peligrosas que el paquete de ladrillos son Knight Rider y la batería antiaérea." {
+    assert.equals(#{knightRider, bateriaAntiaerea}, camion.cargasQueSuperanNivelPeligroDe(paqueteDeLadrillos))
     
   }
 
-  test "Las cosas más peligrosas que el paquete de ladrillos son Knight Rider y la batería antiaérea." {
-    assert.that(camion.cargasQueSuperanNivelPeligroDe(paqueteDeLadrillos).contains(knightRider))
-    assert.that(camion.cargasQueSuperanNivelPeligroDe(paqueteDeLadrillos).contains(bateriaAntiaerea))
-    assert.equals(2, camion.cargasQueSuperenNivel_Peligro(2).size())
-    
-  }
-
-  test "No hay cosas más peligrosas que 200." {
+  test "Camion cargado con Knight Rider, Batería antiaérea con misiles, No hay cosas más peligrosas que 200." {
     assert.that(camion.cargasQueSuperenNivel_Peligro(200).isEmpty())
     
   }
@@ -182,18 +178,18 @@ describe "Puede circular en ruta" {
     camion.cargar(paqueteDeLadrillos)
     paqueteDeLadrillos.cantLadrillos(300)
   }
-  test "Si el camión tiene a Bumblebee en auto y un paquete de 300 ladrillos, puede circular en una ruta con nivel 20." {
+  test "Camión tiene a Bumblebee en auto y un paquete de 300 ladrillos, puede circular en una ruta con nivel 20." {
     assert.that(camion.puedeCircularRuta(20))
     
   }
 
-  test "Pero si el camión tiene el paquete de 400 ladrillos y Bumblebee en modo auto ya no puede circular en la ruta de nivel 20, por estar excedido de peso." {
+  test "Camión tiene paquete de 400 ladrillos y Bumblebee en modo auto no puede circular en la ruta de nivel 20, por estar excedido de peso." {
     paqueteDeLadrillos.cantLadrillos(400)
     assert.notThat(camion.puedeCircularRuta(20))
     
   }
 
-  test "Tampoco puede circular en una ruta de nivel 20 si tiene un paquete de 300 ladrillos y Bumblebee está en modo robot." {
+  test "Camión tiene paquete de 300 ladrillos y Bumblebee en modo auto no puede circular en la ruta de nivel 20." {
     bumblebee.transformarEnRobot()
     assert.notThat(camion.puedeCircularRuta(20))
     
