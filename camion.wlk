@@ -82,5 +82,9 @@ object camion {
 		return cosas.any({carga => carga.peso() >= min and carga.peso() <= max})
 	}
 
+	method cargaMasPesada() {
+		return cosas.max({ carga => carga.peso() })
+	  
+	}
 
 }

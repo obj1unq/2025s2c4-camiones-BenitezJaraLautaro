@@ -99,7 +99,7 @@ describe "cargas con nivel de peligro n" {
 
   }
   test "Camion cargado con Bumblebee, batería antiaérea y residuos radiactivos, si se pide algo de nivel 0 debe encontrar a la batería antiaérea" {
-    assert.that(bateriaAntiaerea.nombre() == camion.objetoConNivelDePeligrosidad(0).nombre())
+    assert.equals(bateriaAntiaerea, camion.objetoConNivelDePeligrosidad(0))
 
   }
 
@@ -232,6 +232,32 @@ describe "Tiene algo que pesa entre dos valores" {
   }
 
   test "Camnion con Bumblebee y un paquete de 300 ladrillo, tiene algo que pesa entre 5 y 700." {
+    assert.that(camion.llevaAlgoQuePesaEntre(5, 700))
+    
+  }
+
+  test "Camnion con Bumblebee y un paquete de 300 ladrillo, tiene algo que pesa entre 5 y 1000." {
+    assert.that(camion.llevaAlgoQuePesaEntre(5, 1000))
+  }
+
+  test "Camnion con Bumblebee y un paquete de 300 ladrillo, no tiene algo que pesa entre 900 y 1000." {
+    assert.notThat(camion.llevaAlgoQuePesaEntre(900, 1000))
+  }
+}
+
+describe "Cosa más pesada" {
+  test "Camión cargado con Bumblebee y un paquete de 300 ladrillos, la cosa más pesada es Bumblebee." {
+    camion.cargar(bumblebee)
+    paqueteDeLadrillos.cantLadrillos(300)
+    camion.cargar(paqueteDeLadrillos)
+    assert.equals(bumblebee, camion.cargaMasPesada())
+    
+  }
+
+  test "camión vacío, no se puede calcular la cosa más pesada." {
+    assert.throwsException({camion.cargaMasPesada()})
     
   }
 }
+
+
