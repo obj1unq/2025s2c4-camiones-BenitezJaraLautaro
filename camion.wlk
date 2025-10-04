@@ -92,4 +92,9 @@ object camion {
 	  
 	}
 
+	method cantTotalDeBultos() {
+		return cosas.sum({ carga => carga.bultoRequerrido() })
+	  
+	}
+
 }

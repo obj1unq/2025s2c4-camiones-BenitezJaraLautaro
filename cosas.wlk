@@ -2,16 +2,27 @@ object knightRider {
 	method peso() = 500
 	
 	method nivelPeligrosidad() = 10
+
+	method bultoRequerrido() {
+		return 1
+	  
+	}
 }
 
 object arenaAGranal {
 	var property peso = 0
 	
 	method nivelPeligrosidad() = 1
+
+	method bultoRequerrido() {
+		return 1
+	  
+	}
 	
 }
 
 object bumblebee {
+
 	var property estaTransformadoEnAuto = true
 	
 	method peso() = 800
@@ -31,6 +42,11 @@ object bumblebee {
 	method transformarEnAuto() {
 		estaTransformadoEnAuto = true
 	}
+
+	method bultoRequerrido() {
+		return 2
+	  
+	}
 	
 }
 
@@ -41,6 +57,19 @@ object paqueteDeLadrillos {
 	method peso() = cantLadrillos * pesoPorLadrillo
 	
 	method nivelPeligrosidad() = 2
+
+	method bultoRequerrido() {
+		if (cantLadrillos <= 100) {
+			return 1
+		} else {
+			if (cantLadrillos <=300) {
+				return 2
+			} else {
+				return 3
+			}
+		}
+	  
+	}
 	
 }
 
@@ -70,19 +99,35 @@ object bateriaAntiaerea {
 	method cargarMisiles() {
 		estaConMisiles = true
 	}
+
+	method bultoRequerrido() {
+		if(not estaConMisiles) {
+			return 1
+		} else {
+			return 2
+		}
+	  
+	}
 	
 }
 
 object residuosRadiactivos {
+
 	var property peso = 0
 	
 	method nivelPeligrosidad() = 200
+
+	method bultoRequerrido() {
+		return 1
+	  
+	}
 	
 }
 
 object contenedorPortuario {
 	const pesoVacio = 100
 	const property cosasDentro = #{}
+	const bultoQueRequiere = 1
 	
 	method peso() = pesoVacio + cosasDentro.sum({ cosa => cosa.peso() })
 	
@@ -103,6 +148,12 @@ object contenedorPortuario {
 		return cosasDentro.max({ cosas => cosas.nivelPeligrosidad() })
 	  
 	}
+
+	method bultoRequerrido() {
+		//Le sume como atributo para que no sea un magic number 
+		return bultoQueRequiere + cosasDentro.sum({ carga => carga.bultoRequerrido() })
+	  
+	}
 	
 }
 
@@ -121,6 +172,11 @@ object embalajeDeSeguridad {
 
 	method nivelPeligrosidad() {
 		return objetoEnvuelto.nivelPeligrosidad()/2
+	  
+	}
+
+	method bultoRequerrido() {
+		return 2
 	  
 	}
 }

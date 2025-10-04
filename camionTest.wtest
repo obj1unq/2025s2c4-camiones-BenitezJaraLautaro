@@ -260,4 +260,37 @@ describe "Cosa más pesada" {
   }
 }
 
+describe "TotalBultos" {
+  test "Camion con contenedor portuario con Knight Rider y Bumblebee, El embalaje de seguridad envolviendo los residuos radiactivos, Arena a granel, Un paquete de 50 ladrillos, a batería antiaérea descargada. La cantidad de bultos es 9" {
+    contenedorPortuario.cargarObjeto(knightRider)
+    contenedorPortuario.cargarObjeto(bumblebee)
+    camion.cargar(contenedorPortuario)
+    embalajeDeSeguridad.envolverObjeto(residuosRadiactivos)
+    camion.cargar(embalajeDeSeguridad)
+    camion.cargar(arenaAGranal)
+    paqueteDeLadrillos.cantLadrillos(50)
+    camion.cargar(paqueteDeLadrillos)
+    camion.cargar(bateriaAntiaerea)
+    assert.equals(9, camion.cantTotalDeBultos())
+    
+  }
+
+  test "Camion con paquete de 150 ladrillos, batería antiaérea cargada, contenedor portuario vacío. La cantidad de bultos es 5." {
+    paqueteDeLadrillos.cantLadrillos(150)
+    camion.cargar(paqueteDeLadrillos)
+    bateriaAntiaerea.cargarMisiles()
+    camion.cargar(bateriaAntiaerea)
+    camion.cargar(contenedorPortuario)
+    assert.equals(5, camion.cantTotalDeBultos())
+    
+  }
+
+  test "Camion con paquete de 350 ladrillos y Arena a grane. La cantidad de bultos es 4." {
+    paqueteDeLadrillos.cantLadrillos(350)
+    camion.cargar(paqueteDeLadrillos)
+    camion.cargar(arenaAGranal)
+    assert.equals(4, camion.cantTotalDeBultos())
+  }
+}
+
 
