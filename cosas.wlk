@@ -7,6 +7,10 @@ object knightRider {
 		return 1
 	  
 	}
+
+	method efectoAccidente() {
+		null
+	}
 }
 
 object arenaAGranal {
@@ -16,6 +20,11 @@ object arenaAGranal {
 
 	method bultoRequerrido() {
 		return 1
+	  
+	}
+
+	method efectoAccidente() {
+		peso = peso + 20
 	  
 	}
 	
@@ -47,6 +56,15 @@ object bumblebee {
 		return 2
 	  
 	}
+
+	method efectoAccidente() {
+		if (estaTransformadoEnAuto) {
+			self.transformarEnRobot()
+		} else {
+			self.transformarEnAuto()
+		}
+	  
+	}
 	
 }
 
@@ -68,6 +86,12 @@ object paqueteDeLadrillos {
 				return 3
 			}
 		}
+	  
+	}
+
+	method efectoAccidente() {
+		cantLadrillos = cantLadrillos - 12
+		cantLadrillos = 0.max(cantLadrillos)
 	  
 	}
 	
@@ -108,6 +132,11 @@ object bateriaAntiaerea {
 		}
 	  
 	}
+
+	method efectoAccidente() {
+		self.desgargarMisiles()
+	  
+	}
 	
 }
 
@@ -119,6 +148,11 @@ object residuosRadiactivos {
 
 	method bultoRequerrido() {
 		return 1
+	  
+	}
+
+	method efectoAccidente() {
+		peso = peso + 15
 	  
 	}
 	
@@ -154,6 +188,11 @@ object contenedorPortuario {
 		return bultoQueRequiere + cosasDentro.sum({ carga => carga.bultoRequerrido() })
 	  
 	}
+
+	method efectoAccidente() {
+		cosasDentro.forEach({ carga => carga.efectoAccidente() })
+	  
+	}
 	
 }
 
@@ -177,6 +216,11 @@ object embalajeDeSeguridad {
 
 	method bultoRequerrido() {
 		return 2
+	  
+	}
+
+	method efectoAccidente() {
+		null
 	  
 	}
 }

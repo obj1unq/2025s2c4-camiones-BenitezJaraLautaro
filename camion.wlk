@@ -97,4 +97,9 @@ object camion {
 	  
 	}
 
+	method sufrirAccidente() {
+		cosas.forEach({ carga => carga.efectoAccidente() })
+	  
+	}
+
 }
