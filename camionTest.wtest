@@ -317,6 +317,24 @@ describe "Accidente" {
     assert.notThat(bateriaAntiaerea.estaConMisiles())
     
   }
+
+  test "Camion cargado con: Bumblebee en modo robot, 30 kg de residuos radiactivos, paquete de 10 ladrillos y batería antiaérea descargada; al sufrir accidente: Bumblebee queda en modo auto, Residuos radiactivos quedan con 45 kg de peso, El paquete de ladrillos queda con 0 ladrillos y La batería antiaérea queda descargada." {
+    bumblebee.transformarEnRobot()
+    camion.cargar(bumblebee)
+    residuosRadiactivos.peso(30)
+    camion.cargar(residuosRadiactivos)
+    paqueteDeLadrillos.cantLadrillos(10)
+    camion.cargar(paqueteDeLadrillos)
+    camion.cargar(bateriaAntiaerea)
+
+    camion.sufrirAccidente()
+
+    assert.that(bumblebee.estaTransformadoEnAuto())
+    assert.equals(45, residuosRadiactivos.peso())
+    assert.equals(0, paqueteDeLadrillos.cantLadrillos())
+    assert.notThat(bateriaAntiaerea.estaConMisiles())
+    
+  }
 }
 
 
