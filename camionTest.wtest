@@ -104,12 +104,12 @@ describe "cargas con nivel de peligro n" {
   }
 
   test "Camion cargado con Bumblebee, batería antiaérea y residuos radiactivos, si se pide algo de nivel 15 debe encontrar a Bumblebee." {
-    assert.that(bumblebee.nombre() == camion.objetoConNivelDePeligrosidad(15).nombre())
+    assert.equals(bumblebee, camion.objetoConNivelDePeligrosidad(15))
     
   }
 
   test "Camion cargado con Bumblebee, batería antiaérea y residuos radiactivos, si se pide algo de nivel 200 debe encontrar a los residuos." {
-    assert.that(residuosRadiactivos.nombre() == camion.objetoConNivelDePeligrosidad(200).nombre())
+    assert.equals(residuosRadiactivos, camion.objetoConNivelDePeligrosidad(200))
     
   }
 
@@ -120,13 +120,13 @@ describe "cargas con nivel de peligro n" {
 
   test "Camion cargado con Bumblebee modo robot, batería antiaérea y residuos radiactivos, si se pide algo de nivel 30, entonces encuentra a Bumblebee." {
     bumblebee.transformarEnRobot()
-    assert.that(bumblebee.nombre() == camion.objetoConNivelDePeligrosidad(30).nombre())
+    assert.equals(bumblebee, camion.objetoConNivelDePeligrosidad(30))
     
   }
 
   test "Camion cargado con Bumblebee modo robot, batería antiaérea con misiles cargados y residuos radiactivos, si se pide algo de peligrosidad 100 entonces encuentra a la batería." {
     bateriaAntiaerea.cargarMisiles()
-    assert.that(bateriaAntiaerea.nombre() == camion.objetoConNivelDePeligrosidad(100).nombre())
+    assert.equals(bateriaAntiaerea, camion.objetoConNivelDePeligrosidad(100))
     
   }
 }

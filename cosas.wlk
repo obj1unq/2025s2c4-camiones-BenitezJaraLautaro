@@ -9,7 +9,6 @@ object arenaAGranal {
 	
 	method nivelPeligrosidad() = 1
 	
-	method nombre() = "Arena a granel"
 }
 
 object bumblebee {
@@ -33,7 +32,6 @@ object bumblebee {
 		estaTransformadoEnAuto = true
 	}
 	
-	method nombre() = "Bumblebee"
 }
 
 object paqueteDeLadrillos {
@@ -44,7 +42,6 @@ object paqueteDeLadrillos {
 	
 	method nivelPeligrosidad() = 2
 	
-	method nombre() = "Paquete de ladrillos"
 }
 
 object bateriaAntiaerea {
@@ -74,7 +71,6 @@ object bateriaAntiaerea {
 		estaConMisiles = true
 	}
 	
-	method nombre() = "Batería antiaérea"
 }
 
 object residuosRadiactivos {
@@ -82,7 +78,6 @@ object residuosRadiactivos {
 	
 	method nivelPeligrosidad() = 200
 	
-	method nombre() = "Residuos radiactivos"
 }
 
 object contenedorPortuario {

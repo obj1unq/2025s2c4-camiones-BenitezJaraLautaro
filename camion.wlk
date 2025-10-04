@@ -87,4 +87,9 @@ object camion {
 	  
 	}
 
+	method pesoDeTodasLasCargas() {
+		return cosas.map({ carga => carga.peso() })
+	  
+	}
+
 }
