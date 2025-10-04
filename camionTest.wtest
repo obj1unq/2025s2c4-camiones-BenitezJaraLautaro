@@ -293,4 +293,30 @@ describe "TotalBultos" {
   }
 }
 
+describe "Accidente" {
+  test "Camion cargado con contenedor portuario con Knight Rider y Bumblebee en modo auto; embalaje de seguridad envolviendo 30 kg de residuos radiactivos; 50 kg de arena a granel, Un paquete de 100 ladrillos y batería antiaérea cargada. al producirce accidente: Bumblebee queda en modo robot, Residuos radiactivos quedan con 30 kg de peso, La arena queda con 70 kg, El paquete de ladrillos queda con 88 ladrillos y La batería antiaérea queda descargada." {
+    contenedorPortuario.cargarObjeto(knightRider)
+    contenedorPortuario.cargarObjeto(bumblebee)
+    camion.cargar(contenedorPortuario)
+    embalajeDeSeguridad.envolverObjeto(residuosRadiactivos)
+    residuosRadiactivos.peso(30)
+    camion.cargar(embalajeDeSeguridad)
+    arenaAGranal.peso(50)
+    camion.cargar(arenaAGranal)
+    paqueteDeLadrillos.cantLadrillos(100)
+    camion.cargar(paqueteDeLadrillos)
+    bateriaAntiaerea.cargarMisiles()
+    camion.cargar(bateriaAntiaerea)
+    
+    camion.sufrirAccidente()
+
+    assert.notThat(bumblebee.estaTransformadoEnAuto())
+    assert.equals(30, residuosRadiactivos.peso())
+    assert.equals(70, arenaAGranal.peso())
+    assert.equals(88, paqueteDeLadrillos.cantLadrillos())
+    assert.notThat(bateriaAntiaerea.estaConMisiles())
+    
+  }
+}
+
 
