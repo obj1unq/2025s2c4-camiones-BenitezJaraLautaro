@@ -1,5 +1,9 @@
 import camion.*
 import cosas.*
+import destinos.*
+import rutas.*
+
+
 
 describe "Carga y descarga" {
   test "camion descargado se le carga a bumblebee y solo tiene a bumblebee" {
@@ -334,6 +338,21 @@ describe "Accidente" {
     assert.equals(0, paqueteDeLadrillos.cantLadrillos())
     assert.notThat(bateriaAntiaerea.estaConMisiles())
     
+  }
+}
+
+describe "Transporte" {
+  method initialize() {
+    camion.cargar(bumblebee)
+    arenaAGranal.peso(50)
+    camion.cargar(arenaAGranal)
+    almacen.almacenar(knightRider)
+    almacen.almacenar(residuosRadiactivos)
+  }
+  test "Camion con Bumblebee en modo auto y arena a granel con 50 kg, puede transportar sin problema por la ruta 9, hacia el almacen con Knight Rider y residuos radiactivos. Al descargar el almacen queda con Knight Rider, residuos radiactivos, Bumblebee y arena a granel, y el camion queda vacio" {
+    camion.transportar(almacen, ruta9)
+    assert.that(camion.cosas().isEmpty())
+    assert.equals(#{knightRider, residuosRadiactivos, bumblebee, arenaAGranal}, almacen.cosas())
   }
 }
 
