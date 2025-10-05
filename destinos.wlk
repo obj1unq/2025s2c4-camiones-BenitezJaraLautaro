@@ -1,9 +1,7 @@
 object almacen {
-    const property cosas = #{}
-
-    method almacenar(carga) {
-        cosas.add(carga)
-      
-    }
+  const property cosas = #{}
   
+  method almacenar(carga) {
+    cosas.add(carga)
+  }
 }
