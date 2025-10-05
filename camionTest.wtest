@@ -354,6 +354,28 @@ describe "Transporte" {
     assert.that(camion.cosas().isEmpty())
     assert.equals(#{knightRider, residuosRadiactivos, bumblebee, arenaAGranal}, almacen.cosas())
   }
+
+  test "Camion con Bumblebee en modo auto y arena a granel con 2000 kg, no puede transportar por la ruta 9 por exceso de peso, el almacen queda con Knight Rider y residuos radiactivos; y el camion queda con Bumblebee y arena a granel" {
+    arenaAGranal.peso(2000)
+    camion.transportar(almacen, ruta9)
+    assert.equals(#{knightRider, residuosRadiactivos}, almacen.cosas())
+    assert.equals(#{bumblebee, arenaAGranal}, camion.cosas())
+  }
+
+  test "Camion con Bumblebee en modo auto y arena a granel con 50 kg, puede transportar sin problema por caminos vecindales con maximo de 2000 kg de soporte, hacia el almacen con Knight Rider y residuos radiactivos. Al descargar el almacen queda con Knight Rider, residuos radiactivos, Bumblebee y arena a granel, y el camion queda vacio " {
+    caminosVecinales.pesoMaximoPermitido(2000)
+    camion.transportar(almacen, caminosVecinales)
+    assert.that(camion.cosas().isEmpty())
+    assert.equals(#{knightRider, residuosRadiactivos, bumblebee, arenaAGranal}, almacen.cosas())
+    
+  }
+
+  test "Camion con Bumblebee en modo auto y arena a granel con 50 kg, no puede transportar por caminos vecindales con maximo de 300 kg de soporte, el almacen queda con Knight Rider y residuos radiactivos; y el camion queda con Bumblebee y arena a granel" {
+    caminosVecinales.pesoMaximoPermitido(300)
+    assert.equals(#{knightRider, residuosRadiactivos}, almacen.cosas())
+    assert.equals(#{bumblebee, arenaAGranal}, camion.cosas())
+    
+  }
 }
 
 
