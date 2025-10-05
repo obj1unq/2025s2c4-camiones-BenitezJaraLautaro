@@ -102,4 +102,9 @@ object camion {
 	  
 	}
 
+	method transportar(destino, camino) {
+		
+	  
+	}
+
 }
