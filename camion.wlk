@@ -103,7 +103,9 @@ object camion {
 	}
 
 	method transportar(destino, camino) {
-		
+		if (camino.cumpleCondiciones(self)) {
+			destino.cosas().addAll(cosas)
+		}
 	  
 	}
 
