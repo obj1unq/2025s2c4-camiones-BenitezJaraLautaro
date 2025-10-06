@@ -35,10 +35,8 @@ object camion {
 	)
 	
 	method cargasQueSuperenNivel_Peligro(nivelPeligro) {
-		const superanNivel = cosas.filter(
-			{ carga => carga.nivelPeligrosidad() > nivelPeligro }
-		)
-		return superanNivel
+		return cosas.filter(
+			{ carga => carga.nivelPeligrosidad() > nivelPeligro })
 	}
 	
 	method cargasQueSuperanNivelPeligroDe(
