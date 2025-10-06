@@ -1,5 +1,5 @@
 import cosas.*
-
+//aplique el format document en todos el codigo
 object camion {
 	const tara = 1000
 	const property cosas = #{}
@@ -39,16 +39,9 @@ object camion {
 			{ carga => carga.nivelPeligrosidad() > nivelPeligro })
 	}
 	
-	method cargasQueSuperanNivelPeligroDe(
-		carga
-	) = self.cargasQueSuperenNivel_Peligro(carga.nivelPeligrosidad())
+	method cargasQueSuperanNivelPeligroDe(carga) = self.cargasQueSuperenNivel_Peligro(carga.nivelPeligrosidad())
 	
-	method cargasSuperanNivelPeligro_SoloContieneA_(
-		nivelP,
-		carga
-	) = self.cargasQueSuperenNivel_Peligro(nivelP).contains(
-		carga
-	) and (self.cargasQueSuperenNivel_Peligro(nivelP).size() == 1)
+	method cargasSuperanNivelPeligro_SoloContieneA_(nivelP,carga) = self.cargasQueSuperenNivel_Peligro(nivelP).contains(carga) and (self.cargasQueSuperenNivel_Peligro(nivelP).size() == 1)
 	
 	method puedeCircularRuta(
 		nivelPeligroMaximo
