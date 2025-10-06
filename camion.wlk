@@ -1,5 +1,5 @@
 import cosas.*
-//aplique el format document en todos el codigo
+//aplique el format document en todo el codigo
 object camion {
 	const tara = 1000
 	const property cosas = #{}
@@ -43,11 +43,7 @@ object camion {
 	
 	method cargasSuperanNivelPeligro_SoloContieneA_(nivelP,carga) = self.cargasQueSuperenNivel_Peligro(nivelP).contains(carga) and (self.cargasQueSuperenNivel_Peligro(nivelP).size() == 1)
 	
-	method puedeCircularRuta(
-		nivelPeligroMaximo
-	) = (!self.excedidoDePeso()) and (!self.algunaCargaSuperaPeligro(
-		nivelPeligroMaximo
-	))
+	method puedeCircularRuta(nivelPeligroMaximo) = (!self.excedidoDePeso()) and (!self.algunaCargaSuperaPeligro(nivelPeligroMaximo))
 	
 	method algunaCargaSuperaPeligro(nivelPeligro) = cosas.any(
 		{ carga => carga.nivelPeligrosidad() > nivelPeligro }
